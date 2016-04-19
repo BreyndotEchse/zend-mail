@@ -462,4 +462,12 @@ class HeadersTest extends \PHPUnit_Framework_TestCase
         $headers->addHeaders(['Fake' => ["foo-bar\r\n\r\nevilContent"]]);
         $headers->forceLoading();
     }
+    
+    public function testAddressListGetEncodedFieldValueWithUtf8Domain()
+    {
+        $to = new Header\To;
+        $to->getAdressList()->add('local-part@ä-umlaut.de');
+        $encodedValue = $to->getFieldValue(Header\HeaderInterface::FORMAT_ENCODED);
+        $this->assertEquals('xn---umlaut-4wa.de', $encodedValue);
+    }
 }
