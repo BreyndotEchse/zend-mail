@@ -468,6 +468,6 @@ class HeadersTest extends \PHPUnit_Framework_TestCase
         $to = new Header\To;
         $to->getAddressList()->add('local-part@ä-umlaut.de');
         $encodedValue = $to->getFieldValue(Header\HeaderInterface::FORMAT_ENCODED);
-        $this->assertEquals('xn---umlaut-4wa.de', $encodedValue);
+        $this->assertEquals('local-part@xn---umlaut-4wa.de', $encodedValue);
     }
 }
